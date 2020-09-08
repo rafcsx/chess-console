@@ -1,14 +1,12 @@
-﻿using chess_console.tabuleiro;
-
-namespace chess_console.chess
+﻿using board;
+namespace chess
 {
-    class Rei : Peca
+    class Rei : Part
     {
-        public Rei(Tabuleiro tab, Cor cor) : base(tab, cor) { }
+        public Rei(Board brd, Color cor) : base(brd, cor) { }
         public override string ToString()
         {
-            return "R";
+            return "R ";
         }
     }
-
 }

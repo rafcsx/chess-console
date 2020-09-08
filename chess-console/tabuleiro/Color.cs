@@ -1,6 +1,6 @@
-﻿namespace chess_console.tabuleiro
+﻿namespace board
 {
-    enum Cor
+    enum Color
     {
    Branca,
    Preta,

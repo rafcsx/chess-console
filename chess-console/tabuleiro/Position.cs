@@ -1,12 +1,12 @@
-﻿namespace chess_console.tabuleiro
+﻿namespace board
 {
-    class Posicao
+    class Position
     {
         public int linha { get; set; }
         public int coluna { get; set; }
 
 
-        public Posicao(int linha, int coluna)
+        public Position(int linha, int coluna)
         {
             this.linha = linha;
             this.coluna = coluna;

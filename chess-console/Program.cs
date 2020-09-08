@@ -1,21 +1,34 @@
-﻿using chess_console.tabuleiro;
-using System;
-using chess_console.chess;
-
+﻿using System;
+using board;
+using chess;
 namespace chess_console
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Tabuleiro tab = new Tabuleiro(8, 8);
+            try
+            {
+                PartidaDeXadrez partida = new PartidaDeXadrez();
 
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-            tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(2, 4));
+                while (!partida.terminada)
+                {
+                    Console.Clear();
+                    Tela.imprimirBoard(partida.brd);
 
-            Tela.imprimirTabuleiro(tab);
+                    Console.Write("Origem: ");
+                    Position origem = Tela.lerPosicaoXadrez().toPosicao();
+                    Console.Write("Destino: ");
+                    Position destino = Tela.lerPosicaoXadrez().toPosicao();
 
+                    partida.executaMovimento(origem, destino);
+                }
+                Tela.imprimirBoard(partida.brd);
+            }
+            catch (TabuleiroException boardEX)
+            {
+                Console.WriteLine(boardEX.Message);
+            }
             Console.ReadLine();
         }
     }

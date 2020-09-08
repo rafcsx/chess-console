@@ -1,12 +1,12 @@
-﻿using chess_console.tabuleiro;
-namespace chess_console.chess
+﻿using board;
+namespace chess
 {
-    class Torre : Peca
+    class Torre : Part
     {
-        public Torre(Tabuleiro tab, Cor cor) : base(tab, cor) { }
+        public Torre(Board brd, Color cor) : base(brd, cor) { }
         public override string ToString()
         {
-            return "T";
+            return "T ";
         }
     }
 }
