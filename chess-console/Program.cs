@@ -15,9 +15,16 @@ namespace chess_console
                 {
                     Console.Clear();
                     Tela.imprimirBoard(partida.brd);
-
+                    Console.WriteLine();
                     Console.Write("Origem: ");
                     Position origem = Tela.lerPosicaoXadrez().toPosicao();
+
+                    bool[,] posicaoPossiveis = partida.brd.peca(origem).movimentosPossiveis();
+
+                    Console.Clear();
+                    Tela.imprimirBoard(partida.brd, posicaoPossiveis);
+
+                    Console.WriteLine();
                     Console.Write("Destino: ");
                     Position destino = Tela.lerPosicaoXadrez().toPosicao();
 
