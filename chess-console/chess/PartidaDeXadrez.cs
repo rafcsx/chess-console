@@ -6,8 +6,8 @@ namespace chess
     class PartidaDeXadrez
     {
         public Board brd { get; private set; }
-        private int turno;
-        private Color jogadorAtual;
+        public int turno;
+        public Color jogadorAtual;
         public bool terminada { get; private set; }
 
         public PartidaDeXadrez()
@@ -26,7 +26,49 @@ namespace chess
             Part pecaCapturada = brd.retirarPeca(destino);
             brd.colocarPeca(p, destino);
         }
-    
+
+        public void realizaJogada(Position origem, Position destino)
+        {
+            executaMovimento(origem, destino);
+            turno++;
+            mudaJogador();
+        }
+
+        public void validarPosicaoDeOrigem(Position pos)
+        {
+            if (brd.peca(pos) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
+            }
+            if (jogadorAtual != brd.peca(pos).cor)
+            {
+                throw new TabuleiroException("A peça de origem escolhida não é sua!");
+            }
+            if (!brd.peca(pos).existeMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não há movimentos possíveis para a peça de origem!");
+            }
+        }
+
+        public void validarPosicaoDeDestino(Position origem, Position destino)
+        {
+            if (!brd.peca(origem).podeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida");
+            }
+        }
+
+        private void mudaJogador()
+        {
+            if (jogadorAtual == Color.Branca)
+            {
+                jogadorAtual = Color.Preta;
+            }
+            else
+            {
+                jogadorAtual = Color.Branca;
+            }
+        }
 
         private void colocarPecas()
         {
